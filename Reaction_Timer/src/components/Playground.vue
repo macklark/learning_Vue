@@ -1,0 +1,48 @@
+<template>
+    <div id = "container" v-if = "isDisplay">
+        <div class = "ground" @click = "clickHandler"></div>
+        <h3 class = "timer">{{ timestamp }}ms</h3>
+    </div>
+</template>
+
+<script>
+    export default{
+        name : "Playground",
+        props : ["delay"],
+        data(){
+            return{
+                timestamp : "",
+                isDisplay : false
+            }
+        },
+        methods : {
+            clickHandler(e){
+                this.timestamp = e.timeStamp
+            }
+        },
+        mounted(){
+            setTimeout(() => {
+                this.isDisplay = true
+            }, this.delay)
+        }
+    }
+</script>
+
+<style scoped>
+    #container{
+        max-width: 160px;
+        margin: 40px auto;
+    }
+
+    .ground{
+        background-color: darkgray;
+        padding: 40px;
+        width: 80px;
+        height: 90px;
+    }
+
+    .timer{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #42b883 ;
+    }
+</style>
