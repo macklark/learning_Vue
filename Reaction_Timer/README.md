@@ -3,4 +3,6 @@
 A very basic and simple application using basic vue concepts
 
 Install node modules before
-`npm install`
+```
+npm install
+```
