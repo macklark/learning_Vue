@@ -1,7 +1,7 @@
 <template>
     <div id = "container" v-if = "isDisplay">
-        <div class = "ground" @click = "clickHandler"></div>
-        <h3 class = "timer">{{ timestamp }}ms</h3>
+        <div class = "ground" @click = "stopTimer"></div>
+        <h3 class = "timer">{{ reaction }}ms</h3>
     </div>
 </template>
 
@@ -11,18 +11,25 @@
         props : ["delay"],
         data(){
             return{
-                timestamp : "",
-                isDisplay : false
+                isDisplay : false,
+                timer : null,
+                reaction : 0
             }
         },
         methods : {
-            clickHandler(e){
-                this.timestamp = e.timeStamp
+            startTime(){
+                this.timer = setInterval(() => {
+                    this.reaction += 10
+                }, 10)
+            },
+            stopTimer(){
+                clearInterval(this.timer)
             }
         },
         mounted(){
             setTimeout(() => {
                 this.isDisplay = true
+                this.startTime()
             }, this.delay)
         }
     }
