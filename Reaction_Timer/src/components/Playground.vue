@@ -2,6 +2,7 @@
     <div id = "container" v-if = "isDisplay">
         <div class = "ground" @click = "stopTimer"></div>
         <h3 class = "timer">{{ reaction }}ms</h3>
+        <button class = "again-btn" v-if = "isDisplayagain" @click = "againHandler">Again</button>
     </div>
 </template>
 
@@ -13,7 +14,8 @@
             return{
                 isDisplay : false,
                 timer : null,
-                reaction : 0
+                reaction : 0,
+                isDisplayagain : false
             }
         },
         methods : {
@@ -24,6 +26,10 @@
             },
             stopTimer(){
                 clearInterval(this.timer)
+                this.isDisplayagain = true
+            },
+            againHandler(){
+                window.location.reload()
             }
         },
         mounted(){
@@ -51,5 +57,14 @@
     .timer{
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         color: #42b883 ;
+    }
+
+    .again-btn{
+        width: 60px;
+        height: 30px;
+        cursor: pointer;
+        background-color: black;
+        color: white;
+        border: none;
     }
 </style>
